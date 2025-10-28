@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>Premier League - Login</title>
+    <link rel="stylesheet" href="login-style.css">
+    <link rel="stylesheet" href="footer-style.css">
+</head>
+<body>
+
+<div class="login-box">
+    <img src="images/pl-main-logo.png" alt="Premier League Logo">
+    <h1>System Connect</h1>
+    <form onsubmit="validateLogin(event)">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button type="submit">Connect</button>
+    </form>
+    <p class="error" id="errorMsg"></p>
+</div>
+
+  <footer>
+    <a href="#top">Back To Top</a>
+    <br>
+    <br>
+    <div id="timer">Time on page: 0 seconds</div>
+    <p>&copy; 2025 Premier League. All rights reserved.</p>
+    <img src="images/pl-logo-white.png" alt="Premier League White Logo">
+  </footer>
+
+<script>
+function validateLogin() {
+    event.preventDefault();
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const errorMsg = document.getElementById("errorMsg");
+
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+    if (username.trim() === "" || password.trim() === "") {
+        errorMsg.textContent = "You must enter a username and password";
+        return;
+    }
+
+    if (!passwordRegex.test(password)) {
+        errorMsg.textContent = "Invalid password: at least 8 characters, 1 uppercase letter and 1 number.";
+        return;
+    }
+
+    window.location.href = "main.html";
+}
+
+    let seconds = 0;
+    setInterval(() => {
+    seconds++;
+    document.getElementById("timer").textContent = `Time on page: ${seconds} seconds`;
+    }, 1000);
+</script>
+
+</body>
+</html>
