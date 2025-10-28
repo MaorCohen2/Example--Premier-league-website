@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <title>Premier League - Info Manage</title>
+  <link rel="stylesheet" href="main-styles.css">
+  <link rel="stylesheet" href="navbar-styles.css">
+  <link rel="stylesheet" href="team-form-styles.css">
+  <link rel="stylesheet" href="footer-style.css">
+</head>
+<body>
+
+  <header>
+    <a href="main.html">
+      <img id="Nav-Logo" src="images/pl-main-logo.png" alt="Premier League Logo">
+    </a>
+    <div id="Header-Logo" align="center">
+      <img src="images/premierleague.png" alt="Premier League Banner">
+    </div>
+    <div class="Header-Nav">
+      <a href="main.html">Home</a>
+      <a href="clubs.html">Clubs</a>
+      <a href="table.html">Table</a>
+      <a href="fixture.html">Fixture</a>
+      <a href="results.html">Results</a>
+      <a href="news.html">News</a>
+      <a href="manage.html">Manage</a>
+      <a href="#">More</a>
+      <a id="sign" href="#" onclick="Light()">Light</a>
+      <a id="sign" href="#" onclick="Dark()">Dark</a>
+      <a id="sign" href="signup.html">Sign Up</a>
+      <a id="sign" href="Login.html">Sign In</a>
+    </div>
+  </header>
+
+  <div class="Second-Nav">
+    <p>Data management</p>
+  </div>
+
+<main>
+  <section class="intro">
+    <p>Enter team, player or game details for review or analysis.</p>
+  </section>
+
+  <section id="data-forms">
+
+    <div class="form-container">
+      <h3>Add Football Team</h3>
+      <form id="teamForm">
+        <input type="text" id="teamName" placeholder="Team Name">
+        <input type="text" id="stadium" placeholder="Stadium">
+        <input type="text" id="coach" placeholder="Coach">
+        <input type="text" id="players" placeholder="Players (e.g., Bukayo Saka, Martin Odegaard)">
+        <button type="button" onmouseover="handleMouseOver(this)" onmouseout="handleMouseOut(this)" onclick="addTeam()">Save Team</button>
+      </form>
+      <div class="output" id="teamOutput"></div>
+    </div>
+
+    <div class="form-container">
+      <h3>Add Football Player</h3>
+      <form id="playerForm">
+        <input type="text" id="playerName" placeholder="Player Name">
+        <input type="text" id="position" placeholder="Position (Goalkeeper/Defender/Midfielder/Forward)">
+        <input type="number" id="goals" placeholder="Number of Goals">
+        <input type="number" id="gamesPlayed" placeholder="Number of Games">
+        <button type="button" onmouseover="handleMouseOver(this)" onmouseout="handleMouseOut(this)" onclick="addPlayer()">Save Player</button>
+      </form>
+      <div class="output" id="playerOutput"></div>
+    </div>
+
+    <div class="form-container">
+      <h3>Add Match</h3>
+      <form id="matchForm">
+        <input type="text" id="homeTeam" placeholder="Home Team">
+        <input type="text" id="awayTeam" placeholder="Away Team">
+        <input type="text" id="date" placeholder="Date (DD/MM/YYYY)">
+        <button type="button" onmouseover="handleMouseOver(this)" onmouseout="handleMouseOut(this)" onclick="addMatch()">Save Match</button>
+      </form>
+      <div class="output" id="matchOutput"></div>
+    </div>
+  </section>
+</main>
+
+  <footer>
+    <a href="#top">Back To Top</a>
+    <br>
+    <br>
+    <div id="timer">Time on page: 0 seconds</div>
+    <p>&copy; 2025 Premier League. All rights reserved.</p>
+    <img src="images/pl-logo-white.png" alt="Premier League White Logo">
+  </footer>
+
+<script>
+  class Team {
+    constructor(name, stadium, coach, ...players) {
+      this.setName(name);
+      this.setStadium(stadium);
+      this.setCoach(coach);
+      this.setPlayers(players);
+    }
+
+    setName(name) {
+      const regex = /^[A-Z][a-zA-Z ]{2,}$/;
+      if (!regex.test(name)) throw new Error("Invalid team name: must start with a capital letter and have at least 3 letters.");
+      this.name = name;
+    }
+
+    getName() {
+      return this.name;
+    }
+
+    setStadium(stadium) {
+      const regex = /^[A-Za-z ]{3,}$/;
+      if (!regex.test(stadium)) throw new Error("Invalid stadium name: must have at least 3 English letters.");
+      this.stadium = stadium;
+    }
+
+    getStadium() {
+      return this.stadium;
+    }
+
+    setCoach(coach) {
+      const regex = /^[A-Z][a-z]+( [A-Z][a-z]+)*$/;
+      if (!regex.test(coach)) throw new Error("Invalid coach fullname: each word must start with a capital letter.");
+      this.coach = coach;
+    }
+
+    getCoach() {
+      return this.coach;
+    }
+
+
+    getPoints() {
+    return this.points;
+    }
+
+    setPlayers(players) {
+      if (!Array.isArray(players)) throw new Error("Players must be an array.");
+      players.forEach(player => {
+        const regex = /^[A-Z][a-z]+( [A-Z][a-z]+)*$/;
+        if (!regex.test(player)) throw new Error(`Invalid player name: "${player}" must start with a capital letter.`);
+      });
+      this.players = players;
+    }
+
+    getPlayers() {
+      return this.players;
+    }
+
+    listPlayers() {
+      let playerList = "";
+      for (const player of this.players) {
+        playerList += player + "<br>";
+      }
+      return playerList;
+    }
+    
+
+    toString() {
+      return `
+        Team: ${this.name}<br>
+        Stadium: ${this.stadium}<br>
+        Coach: ${this.coach}<br>
+        Players:<br>${this.listPlayers()}
+      `;
+    }
+  }
+  function addTeam() {
+    const name = document.getElementById("teamName").value;
+    const stadium = document.getElementById("stadium").value;
+    const coach = document.getElementById("coach").value;
+    const playersInput = document.getElementById("players").value;
+
+    try {
+      const playersArray = playersInput !== "" 
+        ? playersInput.split(",").map(p => p.trim()).filter(p => p !== "")
+        : [];
+
+      const team = new Team(name, stadium, coach, ...playersArray);
+
+      document.getElementById("teamOutput").innerHTML =  "✔<br>" + team.toString();
+    } catch (error) {
+      document.getElementById("teamOutput").textContent = "❌ " + error.message;
+    }
+  }
+
+  class Player {
+    constructor(name, position, goals, gamesPlayed) {
+      this.setName(name);
+      this.setPosition(position);
+      this.setGoals(goals);
+      this.setGamesPlayed(gamesPlayed);
+    }
+
+    setName(name) {
+      const regex = /^[A-Z][a-z]+( [A-Z][a-z]+)*$/;
+      if (!regex.test(name)) throw new Error("Invalid player fullname: each word must start with a capital letter.");
+      this.name = name;
+    }
+
+    getName() {
+      return this.name;
+    }
+
+    setPosition(position) {
+      const regex = /^(Goalkeeper|Defender|Midfielder|Forward)$/;
+      if (!regex.test(position)) throw new Error("Invalid position: choose one of Goalkeeper, Defender, Midfielder, Forward.");
+      this.position = position;
+    }
+
+    getPosition() {
+      return this.position;
+    }
+
+    setGoals(goals) {
+      const regex = /^[0-9]+$/;
+      if (!regex.test(goals)) throw new Error("Invalid number of goals: must be a positive number.");
+      this.goals = parseInt(goals);
+    }
+
+    getGoals() {
+      return this.goals;
+    }
+
+    setGamesPlayed(gamesPlayed) {
+      const regex = /^[0-9]+$/;
+      if (!regex.test(gamesPlayed)) throw new Error("Invalid number of games played: must be a positive number.");
+      this.gamesPlayed = parseInt(gamesPlayed);
+    }
+
+    getGamesPlayed() {
+      return this.gamesPlayed;
+    }
+
+    averageGoalsPerGame() {
+      if (this.gamesPlayed === 0) return 0;
+      return (this.goals / this.gamesPlayed).toFixed(2);
+    }
+
+    toString() {
+      return `Player: ${this.name}<br>Position: ${this.position}<br>Goals: ${this.goals}<br>Games Played: ${this.gamesPlayed}<br>Average Goals/Game: ${this.averageGoalsPerGame()}`;
+    }
+  }
+
+  function addPlayer() {
+    try {
+      const name = document.getElementById("playerName").value;
+      const position = document.getElementById("position").value;
+      const goals = document.getElementById("goals").value;
+      const gamesPlayed = document.getElementById("gamesPlayed").value;
+
+      const player = new Player(name, position, goals, gamesPlayed);
+      document.getElementById("playerOutput").innerHTML = "✔<br>" + player.toString();
+    } catch (error) {
+      document.getElementById("playerOutput").innerHTML = "❌ " + error.message;
+    }
+  }
+
+class Match {
+  constructor(homeTeam, awayTeam, date) {
+    this.setHomeTeam(homeTeam);
+    this.setAwayTeam(awayTeam);
+    this.setDate(date);
+  }
+
+  setHomeTeam(homeTeam) {
+    const regex = /^[A-Z][a-zA-Z ]{2,}$/;
+    if (!regex.test(homeTeam)) throw new Error("Invalid home team name: must start with a capital letter and have at least 3 letters.");
+    this.homeTeam = homeTeam;
+  }
+
+  getHomeTeam() {
+    return this.homeTeam;
+  }
+
+  setAwayTeam(awayTeam) {
+    const regex = /^[A-Z][a-zA-Z ]{2,}$/;
+    if (!regex.test(awayTeam)) throw new Error("Invalid away team name: must start with a capital letter and have at least 3 letters.");
+    this.awayTeam = awayTeam;
+  }
+
+  getAwayTeam() {
+    return this.awayTeam;
+  }
+
+  setDate(date) {
+    const regex = /^\d{2}\/\d{2}\/\d{4}$/;
+    if (!regex.test(date)) throw new Error("Invalid date format: use DD/MM/YYYY.");
+    this.date = date;
+  }
+
+  getDate() {
+    return this.date;
+  }
+
+  toString() {
+    return `Home Team: ${this.homeTeam}<br>Away Team: ${this.awayTeam}<br>Date: ${this.date}`;
+  }
+}
+
+function addMatch() {
+  try {
+    const homeTeam = document.getElementById("homeTeam").value;
+    const awayTeam = document.getElementById("awayTeam").value;
+    const date = document.getElementById("date").value;
+
+    const match = new Match(homeTeam, awayTeam, date);
+    document.getElementById("matchOutput").innerHTML = "✔<br>" + match.toString();
+  } catch (error) {
+    document.getElementById("matchOutput").innerHTML = "❌ " + error.message;
+  }
+}
+
+function handleMouseOver(button) {
+  button.style.backgroundColor = '#4d0154';
+}
+
+function handleMouseOut(button) {
+  button.style.backgroundColor = '#3d0043';
+}
+
+let seconds = 0;
+setInterval(() => {
+  seconds++;
+  document.getElementById("timer").textContent = `Time on page: ${seconds} seconds`;
+}, 1000);
+
+</script>
+
+</body>
+</html>

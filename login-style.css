@@ -1,0 +1,76 @@
+body {
+    font-family: Impact, Haettenschweiler, 'Euclid Flex RTL', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #3d0043;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-box {
+    background-color: white;
+    color: #3d0043;
+    padding: 30px;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    text-align: center;
+    margin: auto;
+}
+
+.login-box img {
+    width: 100px;
+    margin-bottom: 15px;
+    transition: transform 0.3s;
+}
+
+.login-box img:hover {
+    transform: scale(1.1);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+input[type=text],
+input[type=password] {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #3d0043;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+    background-color: #f1f1f1;
+    outline: none;
+}
+
+button {
+    width: 95%;
+    padding: 12px;
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #038c5b;
+}
+
+.error {
+    color: #f44336;
+    font-weight: bold;
+    margin-top: 15px;
+    min-height: 20px;
+    text-align: center;
+}
