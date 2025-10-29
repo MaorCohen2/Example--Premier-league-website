@@ -27,16 +27,47 @@ It was built as part of a practical web development project to showcase layout o
 ## 📁 Project Structure
 ```text
 /
-├─ index.html
+├─ Main.html
+├─ Login.html
+├─ signin.html
+├─ signup.html
 ├─ clubs.html
-├─ players.html
-├─ login.html
-├─ assets/
-│  ├─ styles.css
-│  └─ app.js
-└─ docs/
-   ├─ screenshot-home.png
-   └─ screenshot-clubs.png
+├─ fixture.html
+├─ results.html
+├─ side-table.html
+├─ table.html
+├─ confirmation.html
+├─ manage.html
+├─ maintance.html
+├─ news.html
+├─ arsenal.html
+├─ astonvilla.html
+├─ bournemouth.html
+├─ brentford.html
+├─ brighton.html
+├─ chelsea.html
+├─ crystalpalace.html
+├─ ... (more club pages)
+│
+├─ main-styles.css
+├─ navbar-styles.css
+├─ footer-style.css
+├─ clubs-styles.css
+├─ clubs-info-styles.css
+├─ login-style.css
+├─ news-styles.css
+├─ side-table-styles.css
+├─ table-styles.css
+├─ team-form-styles.css
+│
+├─ player_class.js
+│
+├─ images/
+│   └─ (logos, team images, etc.)
+│
+├─ README.md
+├─ LICENSE
+└─ .DS_Store
 ```
 
 ## 🖼️ Screenshots
