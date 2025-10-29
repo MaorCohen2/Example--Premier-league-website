@@ -1,0 +1,29 @@
+body{
+    font-family: Impact, Haettenschweiler, 'Euclid Flex RTL', sans-serif;
+}
+.Table {
+    padding-top: 20px;
+}
+.Table th {
+    border-bottom-style:double;
+}
+.Table td {
+    padding-bottom: 5px;
+}
+.Header-Table {
+    font-size: 8px;
+    text-align: center;
+}
+.Main-Table {
+    font-size: 12px;
+    text-align: center;
+}
+.Table table{
+    background-color: white;
+    color: #3d0043;
+    border-radius: 25px;
+    padding: 5px;
+    border: 2px solid rgb(210, 209, 209);
+    width: 200px;
+    height: 100px;
+}

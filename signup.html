@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Premier League - Sign Up</title>
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" >
+        <link rel="stylesheet" href="sign-styles.css">
+        <link rel="stylesheet" href="navbar-styles.css">
+        <meta charset="utf-8" />
+        <script>
+            function isok(form)
+            { 
+                const pw1 = document.getElementById("psw").value;  
+                const pw2 = document.getElementById("psw-repeat").value;  
+                var passed= false;
+                if(pw1 !== pw2)
+                {   
+                    alert("Passwords did not match");  
+                }
+                else if (form.fullname.value.length < 2)
+                {
+                    alert("Please Enter Correct Name");
+                }
+                else if (!isNaN(form.fullname.value))
+                {
+                    alert("Please Enter Correct Name");
+                }
+                else if (form.psw.value.length < 8)
+                {
+                    alert("Password length must be atleast 8 characters");   
+                }
+                else
+                {
+                passed = true;
+                }
+                return passed;
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <a href="main.html">
+                <img id="Nav-Logo" src="images/pl-main-logo.png">
+            </a>
+            <div id="Header-Logo" align="center">
+                <img alt="Home" src="images/premierleague.png">
+            </div>
+            <div class="Header-Nav">
+                <a href="main.html">Home</a>
+                <a href="clubs.html">Clubs</a>
+                <a href="table.html">Table</a>
+                <a href="fixture.html">Fixture</a>
+                <a href="results.html">Results</a>
+                <a href="news.html">News</a>
+                <a href="#">More</a>
+                <a id="sign" href="signup.html">Sign Up</a>
+                <a id="sign" href="signin.html">Sign In</a>
+            </div>
+        </header>
+        <div class="Second-Nav">
+            <div id="signup-header">
+                <h1>Sign Up</h1>
+                <h9>Please fill in this form to create an account.</h9>
+            </div>
+        </div>
+        <main id="main">
+            <form name="tofes" action="confirmation.html" OnSubmit="return isok(tofes);">
+                <div class="sign-main">
+                    <label for="fullname">Full Name</label>
+                    <br>
+                    <input type="text" placeholder="Enter Full Name" name="fullname" required>
+                    <br>
+                    <label for="email"><b>Email</b></label>
+                    <br>
+                    <input type="email" placeholder="Enter Email" name="email" required>
+                    <br>
+                    <label for="psw"><b>Password</b></label>
+                    <br>
+                    <input type="password" placeholder="Enter Password" id="psw" name="psw" required>
+                    <br>
+                    <label for="psw-repeat"><b>Repeat Password</b></label>
+                    <br>
+                    <input type="password" placeholder="Repeat Password" id="psw-repeat" name="psw-repeat" required>
+                    <br>
+              
+                  <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+              
+                  <div class="clearfix">
+                    <button type="submit" value="send" class="signupbtn">Sign Up</button>
+                    <button type="reset" class="cancelbtn">Reset</button>
+                  </div>
+              </form>
+        </br>
+        </main>
+        <footer>
+            <a href="#top">Back To Top</a>
+            </br>
+            <img src="images/pl-logo-white.png">
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Premier League - Sign Up</title>
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" >
+        <link rel="stylesheet" href="sign-styles.css">
+        <link rel="stylesheet" href="navbar-styles.css">
+        <meta charset="utf-8" />
+        <script>
+            function Dark()
+            {
+                document.getElementById('main').style.backgroundColor='#3d0043';
+                document.getElementById('feature1').style.color='white';
+                document.getElementById('feature2').style.color='white';
+                document.getElementById('feature3').style.color='white';
+                document.getElementsById('right-side').style.backgroundColor='#3d0043';
+            }
+            function Light()
+            {
+                document.getElementById('main').style.backgroundColor='white';
+                document.getElementById('feature1').style.color='#3d0043';
+                document.getElementById('feature2').style.color='#3d0043';
+                document.getElementById('feature3').style.color='#3d0043';
+                document.getElementsById('right-side').style.backgroundColor='white';
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <a href="main.html">
+                <img id="Nav-Logo" src="images/pl-main-logo.png">
+            </a>
+            <div id="Header-Logo" align="center">
+                <img alt="Home" src="images/premierleague.png">
+            </div>
+            <div class="Header-Nav">
+                <a href="main.html">Home</a>
+                <a href="clubs.html">Clubs</a>
+                <a href="table.html">Table</a>
+                <a href="fixture.html">Fixture</a>
+                <a href="results.html">Results</a>
+                <a href="news.html">News</a>
+                <a id="sign" href="#" onclick="Light()">Light</a>
+                <a id="sign" href="#" onclick="Dark()">Dark</a>
+                <a href="#">More</a>
+                <a id="sign" href="signup.html">Sign Up</a>
+                <a id="sign" href="#">Sign In</a>
+            </div>
+        </header>
+        <div class="Second-Nav">
+            <p>Confirmation<p>
+        </div>
+        <main id="main">
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1 align="center">Sign up Succesfully!</h1>
+            <br>
+            <a id="confirmation" href="main.html"><h4 align="center">Click Here To Go Home Page</h2></a>
+            <br>
+            <br>
+            <br>
+            <br>
+        </main>
+        <footer>
+            <a href="#top">Back To Top</a>
+            </br>
+            <img src="images/pl-logo-white.png">
+        </footer>
+    </body>
+</html>
