@@ -88,7 +88,31 @@ _Add your screenshots under `/docs` and link them here:_
 - Use **relative paths** for all links: `href="clubs.html"` (not `/clubs.html`)  
 - Ensure file names match exactly (case sensitive).  
 - Add `<meta name="description">` and `<title>` for SEO improvement.  
-- Recommended Lighthouse score: 90+ on all categories.  
+- Recommended Lighthouse score: 90+ on all categories.
+
+## 🧹 Quick Polish
+   To make the project look more professional and ready for presentation:
+
+- **Normalize file names**  
+   Use lowercase and hyphens instead of uppercase or underscores.  
+   Example:  
+   `Main.html → index.html`, `Login.html → login.html`, `player_class.js → player-class.js`, `maintance.html → maintenance.html`.  
+- **Organize assets**  
+   Create a clear folder structure for static files:
+  assets/
+   css/
+   js/
+   images/
+  Move all CSS, JS, and image files there and update your links accordingly:
+  ```html
+   <link rel="stylesheet" href="assets/css/main.css">
+   <script src="assets/js/player-class.js"></script>
+- **Improve accessibility & SEO** — add `<title>`, `<meta name="description">`, and `alt` text for images.
+- **Clean design consistency** — unify fonts, colors, and navigation layout across all pages.  
+- **Optional:** 
+   * add a simple `404.html` page and a short “About” section for context.
+   * Unify design (consistent fonts, colors, and navigation).
+   * Add a short “About” paragraph for clarity.
 
 ## 👤 Author
 **Maor Cohen**  
