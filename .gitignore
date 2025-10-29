@@ -1,0 +1,62 @@
+# ===============================
+# Premier League Website – .gitignore
+# ===============================
+
+# System / OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / Editor Settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs / Temporary Files
+*.log
+*.tmp
+*.bak
+*.old
+*.orig
+*.swp
+*.swo
+*.cache
+
+# Build / Output Directories
+dist/
+build/
+out/
+_site/
+temp/
+
+# Environment / Local Config
+.env
+.env.*
+*.local
+
+# Image Backups / Editor Artifacts
+*.psd
+*.ai
+*.sketch
+*.xcf
+*.svg~
+*.jpg~
+*.png~
+*.jpeg~
+
+# Dependency Folders (if added later)
+node_modules/
+bower_components/
+vendor/
+
+# System Metadata
+Icon?
+ehthumbs.db
+Network Trash Folder
+Temporary Items
+.nfs*
+
+# GitHub Pages cache
+docs/_site/
+.cache/
